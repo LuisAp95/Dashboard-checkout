@@ -1,0 +1,135 @@
+{
+  "companyName": "Move Wirelesss",
+  "companyRif": "G200161370",
+  "description": "Contrato Corporativo Cliente: Techologies - Solución Integrada Move Wirelesss",
+  "totalAmount": "1.000,25",
+  "banks": [
+    {
+      "value": "0104",
+      "label": "Venezolano de Crédito (VMC)",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0105",
+      "label": "Mercantil",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0108",
+      "label": "Banco Provincial",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0114",
+      "label": "Bancaribe",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0115",
+      "label": "Banco Exterior",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0128",
+      "label": "Banco Caronl",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0134",
+      "label": "Banesco",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0138",
+      "label": "Banco Plaza",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0151",
+      "label": "Fondo Comun (BFC)",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0156",
+      "label": "1098 Banco",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0157",
+      "label": "Del Sur",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0168",
+      "label": "Bancrecer",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0169",
+      "label": "R4",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0172",
+      "label": "Bancamiga",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0174",
+      "label": "Banplus",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0191",
+      "label": "Banco Nacional de Crédito (BMC)",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "9999",
+      "label": "SyPago Banco",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    },
+    {
+      "value": "0178",
+      "label": "N58",
+      "active": true,
+      "synagClient": true,
+      "enableTransitionAccount": false
+    }
+  ],
+  "documentTypes": ["V", "E", "P", "J", "G", "C"]
+}

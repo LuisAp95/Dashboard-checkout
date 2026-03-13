@@ -1,0 +1,159 @@
+@import "tailwindcss";
+/*@import url(https://db.onlinewebfonts.com/c/d05c19ccecf7003d248c60ffd6b5e8f7?family=Binance+PLEX);*/
+
+:root {
+  height: 100%;
+  --main-bg: var(--theme-main-bg, #0b416e);
+  --main-bg-secundary: var(--theme-main-bg-secundary, #f5f5f5);
+
+  --primary: var(--theme-primary, #0065bb);
+  --secondary: var(--theme-secondary, #00bcf4);
+  --tertiary: var(--theme-tertiary, #00bcf4);
+
+  --error: var(--theme-error, #c10000);
+  --success: var(--theme-success, #00bcf4);
+  --focus: var(--theme-focus, #0065bb);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes smoothScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+.device-transition {
+  opacity: 0;
+  animation: smoothScale 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.device-container {
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.shadows {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.8);
+}
+
+.custon-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Binance PLEX", "Helvetica Neue", "Arial", sans-serif;
+}
+
+.logo {
+  width: 280px;
+  height: 140px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+  box-shadow: 0 0 0 30px transparent inset !important;
+  -webkit-text-fill-color: currentColor !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* Input hover and focus styles */
+input:hover:not(.error) {
+  border-bottom-color: var(--hover-color) !important;
+}
+
+input:focus:not(.error) {
+  border-color: var(--focus-color) !important;
+}
+
+/* Asegurar que los inputs mantengan su estilo cuando están autofill */
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+  box-shadow: 0 0 0 30px transparent inset !important;
+  -webkit-text-fill-color: currentColor !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: transparent !important;
+  border-color: var(--focus-color) !important;
+  color: inherit !important;
+}
+
+/* Asegurar que los inputs mantengan su estilo cuando están autofill y hover */
+input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+  box-shadow: 0 0 0 30px transparent inset !important;
+  -webkit-text-fill-color: currentColor !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: transparent !important;
+  border-bottom-color: var(--hover-color) !important;
+  color: inherit !important;
+}
+
+/* Breakpoint personalizado para pantallas menores a 1300px */
+@media (max-width: 1299px) {
+  .config-panel-mobile {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    height: 100vh;
+    width: 360px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .config-panel-hidden {
+    transform: translateX(-100%);
+  }
+
+  .config-panel-visible {
+    transform: translateX(0);
+  }
+
+  .config-menu-button {
+    display: flex;
+  }
+
+  .config-overlay {
+    display: block;
+  }
+}
