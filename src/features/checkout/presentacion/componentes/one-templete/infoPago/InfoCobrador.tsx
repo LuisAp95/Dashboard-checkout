@@ -3,6 +3,7 @@ import type { Data } from "../../../../../dashboard/dominio/interfaces/types";
 import { useDivisePreview } from "../../../../../../context/device-preview-context";
 import { useAppContext } from "../../../../../../context/AppContext";
 import syPagoLogo from "../../../../../../assets/svg/Sypago.svg";
+import segHoSypago from "/images/segHoSypago.png";
 import conatelLogo from "../../../../../../assets/svg/0168_W.svg";
 
 interface InfoCobroProps extends Data {
@@ -26,7 +27,7 @@ export const InfoCobro: React.FC<InfoCobroProps> = memo((props) => {
           {selectedTemplateName !== "0168" &&
             selectedTemplateName !== "netuno" &&
             selectedTemplateName !== "Conatel" && (
-              <div className="md:flex hidden relative md:h-[150px] md:w-[300px] logo items-center justify-center ">
+              <div className="md:flex hidden relative md:h-[180px] md:w-[400px] logo items-center justify-center ">
                 <div className="w-full h-full flex items-center justify-center">
                   <img
                     src={syPagoLogo}

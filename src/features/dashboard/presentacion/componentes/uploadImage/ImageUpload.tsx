@@ -131,7 +131,7 @@ export default function ImageUpload({
 
   return (
     <div className="w-full">
-      <div className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-gray-700/50 hover:bg-gray-700 cursor-pointer transition-all duration-200 relative">
+      <div className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-[#1A0F17] hover:bg-[#AE7AA9]/40 cursor-pointer transition-all duration-200 relative">
         <div
           className="relative flex items-center"
           onMouseEnter={() => setShowTooltip(true)}

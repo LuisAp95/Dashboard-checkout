@@ -50,7 +50,7 @@ export const SelecConfig: FC<TempletProps> = ({
         {/* Select Header */}
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-gray-700/50 hover:bg-gray-700 cursor-pointer transition-all duration-200"
+          className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-[#1A0F17] hover:bg-[#AE7AA9]/40 cursor-pointer transition-all duration-200"
         >
           <div className="flex items-center gap-2">
             {(title === "tema" || title === "input") && (
@@ -86,7 +86,7 @@ export const SelecConfig: FC<TempletProps> = ({
               animate={{ opacity: 1, y: 0, height: "auto" }}
               exit={{ opacity: 0, y: -10, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full mt-2 overflow-hidden bg-gray-700/30 rounded-lg"
+              className="relative w-full mt-2 overflow-hidden bg-[#1A0F17] rounded-lg"
             >
               {options.map((option) => (
                 <motion.div
@@ -98,8 +98,8 @@ export const SelecConfig: FC<TempletProps> = ({
                   className={`px-4 py-2 cursor-pointer transition-colors duration-200 text-left
                     ${
                       option.id === templet
-                        ? "text-[#0065BB] bg-gray-700/50"
-                        : "text-gray-300 hover:bg-gray-700/50"
+                        ? "text-[#AE7AA9] bg-[#1A0F17]"
+                        : "text-gray-300 hover:bg-[#AE7AA9]/40"
                     }`}
                 >
                   {option.label}

@@ -130,7 +130,7 @@ export default function Header() {
         {deviceType === "desktop" && (
           <button
             onClick={() => navigate("/template-view")}
-            className="p-2 cursor-pointer text-gray-600 hover:text-[#00bcf4] hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 cursor-pointer text-gray-600 hover:text-[#AE7AA9] hover:bg-gray-100 rounded-full transition-colors"
             title="Vista Completa"
           >
             <Maximize2 className="w-6 h-6" />
@@ -139,7 +139,7 @@ export default function Header() {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={handleSaveButtonClick}
-            className="p-2 cursor-pointer text-[#0065BB] hover:text-[#0052a3] hover:bg-blue-50 rounded-full transition-colors flex items-center gap-1 "
+            className="p-2 cursor-pointer text-[#AE7AA9] hover:text-[#AE7AA9] hover:bg-[#AE7AA9]/20 rounded-full transition-colors flex items-center gap-1 "
             title={
               showSaveTemplateOption ? "Guardar Template" : "Guardar Cambios"
             }
@@ -160,7 +160,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="absolute right-0 top-full mt-2 min-w-[200px] bg-gray-800 rounded-lg shadow-lg border border-gray-700 overflow-hidden z-50"
+                className="absolute right-0 top-full mt-2 min-w-[200px] bg-[#1A0F17] rounded-lg shadow-lg border border-gray-900 overflow-hidden z-50"
               >
                 {showSaveTemplateOption ? (
                   // Template nuevo: mostrar directamente el input
@@ -170,7 +170,7 @@ export default function Header() {
                       value={templateName}
                       onChange={(e) => setTemplateName(e.target.value)}
                       placeholder="Nombre del template"
-                      className="w-full px-3 py-2 bg-gray-700/50 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0065BB] focus:border-transparent"
+                      className="w-full px-3 py-2 bg-[#AE7AA9]/30 border border-gray-900 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#AE7AA9] focus:border-transparent"
                       autoFocus
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && templateName.trim()) {
@@ -187,7 +187,7 @@ export default function Header() {
                       <button
                         onClick={handleSaveTemplate}
                         disabled={!templateName.trim() || isSaving}
-                        className="flex-1 px-3 py-2 bg-[#0065BB] text-white rounded-md hover:bg-[#0052a3] transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed disabled:text-gray-400 text-sm"
+                        className="flex-1 px-3 py-2 bg-[#AE7AA9]/80 text-white rounded-md hover:bg-[#AE7AA9]/50 transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed disabled:text-gray-400 text-sm"
                       >
                         {isSaving ? "Guardando..." : "Guardar"}
                       </button>
@@ -198,7 +198,7 @@ export default function Header() {
                           setIsDropdownOpen(false);
                         }}
                         disabled={isSaving}
-                        className="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 py-2 bg-[#AE7AA9]/20 text-gray-300 rounded-md hover:bg-[#AE7AA9]/40 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         Cancelar
                       </button>
@@ -255,7 +255,7 @@ export default function Header() {
                       <button
                         onClick={handleSaveTemplate}
                         disabled={!templateName.trim() || isSaving}
-                        className="flex-1 px-3 py-2 bg-[#0065BB] text-white rounded-md hover:bg-[#0052a3] transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed disabled:text-gray-400 text-sm"
+                        className="flex-1 px-3 py-2 bg-[#AE7AA9]/30 text-white rounded-md hover:bg-[#AE7AA9]/50 transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed disabled:text-gray-400 text-sm"
                       >
                         {isSaving ? "Guardando..." : "Guardar"}
                       </button>
@@ -265,7 +265,7 @@ export default function Header() {
                           setTemplateName("");
                         }}
                         disabled={isSaving}
-                        className="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 py-2 bg-[#AE7AA9]/20 text-gray-300 rounded-md hover:bg-[#AE7AA9]/40 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         Cancelar
                       </button>

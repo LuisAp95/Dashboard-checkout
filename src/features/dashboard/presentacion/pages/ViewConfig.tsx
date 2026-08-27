@@ -35,8 +35,8 @@ export const ViewConfig: React.FC<Props> = ({ data }) => {
   return (
     <div className="flex flex-col h-screen relative">
       {/*<BubbleBackground />*/}
-      {/*<Header />*/}
-      <main className="flex h-screen flex-col  bg-gray-800 md:flex-row flex-1 w-full p-4 gap-2 overflow-hidden">
+      {/*<Header /> #2D2437 */}
+      <main className="flex h-screen flex-col bg-[#2B2529] md:flex-row flex-1 w-full p-4 gap-2 overflow-hidden">
         <ConfigPanel
           onLogoUpload={handleLogoUpload}
           onBackgroundUpload={handleBackgroundUpload}

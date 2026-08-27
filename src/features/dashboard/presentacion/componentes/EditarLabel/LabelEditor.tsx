@@ -41,7 +41,7 @@ const LabelEditor = () => {
             type="text"
             value={label}
             onChange={(e) => handleLabelChange(field, e.target.value)}
-            className="py-1 border-b border-b-gray-500 bg-gray-700/50 text-gray-300 px-4 cursor-pointer focus:outline-none focus:border-b-[#0065BB] rounded"
+            className="py-1 border-b border-b-gray-500 bg-[#AE7AA9]/20 text-gray-300 px-4 cursor-pointer focus:outline-none focus:border-b-[#0065BB] rounded"
           />
         </div>
       ))}

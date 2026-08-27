@@ -16,10 +16,10 @@ export default function ConfirmarDatos({ onClose }: SuccessModalProps) {
 
     // Datos del cobrador
     const cobradorData: DataItem[] = [
-        { label: 'Nombre', value: 'Unicasa' },
-        { label: 'Nro Documento', value: 'J25163451' },
-        { label: 'Concepto', value: 'Cobro de prueba enviado por link stand alone' },
-        { label: 'Monto', value: '350,00' }
+        { label: 'Nombre', value: 'Seguros Horizonte S.A' },
+        { label: 'Nro Documento', value: 'G200087013' },
+        { label: 'Concepto', value: 'Pago de poliza' },
+        { label: 'Monto', value: '1.000,25' }
     ]
 
     // Datos del pagador

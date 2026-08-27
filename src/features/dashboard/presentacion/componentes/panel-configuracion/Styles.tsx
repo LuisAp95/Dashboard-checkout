@@ -88,11 +88,11 @@ export default function Styles() {
         templet={states.selecteTemplate}
       />
 
-      <div className={`flex h-10 font-medium text-gray-300 flex-row items-center justify-between px-4 py-2 rounded-lg bg-gray-700/50 ${states.selecteTemplate !== '1' && ' opacity-50 '}`}>
+      <div className={`flex h-10 font-medium text-gray-300 flex-row items-center justify-between px-4 py-2 rounded-lg bg-[#1A0F17] ${states.selecteTemplate !== '1' && ' opacity-50 '}`}>
         <h1>Invertir Tema</h1>
         <div className={`flex w-[35px] h-[15px] relative p-1 shadow-gray-900 shadow bg-gray-600 rounded-full ${states.selecteTemplate !== '1' ? 'pointer-events-none opacity-50 cursor-not-allowed': 'cursor-pointer' }`} onClick={() => states.selecteTemplate 
           === '1' && actions.setIsPosition(!states.isPosition) }>
-          <div className={`absolute  h-[15px] w-[15px] transition-all duration-300 rounded-full  ${states.isPosition ? 'bg-[#0065BB] top-0 left-0 translate-x-0 ' : 'bg-gray-400 top-0 translate-x-full'}`}></div>
+          <div className={`absolute  h-[15px] w-[15px] transition-all duration-300 rounded-full  ${states.isPosition ? 'bg-[#AE7AA9] top-0 left-0 translate-x-0 ' : 'bg-gray-400 top-0 translate-x-full'}`}></div>
         </div>
       </div>
 
@@ -108,7 +108,7 @@ export default function Styles() {
         <div key={section.id} className="w-full">
           <div
             onClick={() => toggleSection(section.id)}
-            className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-gray-700/50 hover:bg-gray-700 cursor-pointer transition-all duration-200"
+            className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-[#1A0F17] hover:bg-[#AE7AA9]/40 cursor-pointer transition-all duration-200"
           >
             <div className="flex items-center gap-2">
               <div
@@ -148,7 +148,7 @@ export default function Styles() {
                 animate={{ opacity: 1, y: 0, height: 'auto' }}
                 exit={{ opacity: 0, y: -10, height: 0 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full mt-2 overflow-hidden p-4 bg-gray-700/30 rounded-lg"
+                className="relative w-full mt-2 overflow-hidden p-4 bg-[#1A0F17] rounded-lg"
               >
                 {section.id === "modal" && (
                   <div className="flex gap-2 items-center justify-between mb-3 text-gray-300">
@@ -157,7 +157,7 @@ export default function Styles() {
                       className="flex w-[35px] h-[15px] relative p-1 cursor-pointer shadow-gray-900 shadow bg-gray-600 rounded-full" 
                       onClick={() => actions.setIsOpenModal(!states.isOpenModal)}
                     >
-                      <div className={`absolute h-[15px] w-[15px] transition-all duration-300 rounded-full ${states.isOpenModal ? 'bg-[#0065BB] top-0 left-0 translate-x-0' : 'bg-gray-400 top-0 translate-x-full'}`}></div>
+                      <div className={`absolute h-[15px] w-[15px] transition-all duration-300 rounded-full ${states.isOpenModal ? 'bg-[#AE7AA9] top-0 left-0 translate-x-0' : 'bg-gray-400 top-0 translate-x-full'}`}></div>
                     </div>
                   </div>
                 )}

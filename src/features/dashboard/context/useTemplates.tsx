@@ -142,14 +142,73 @@ export const useTemplates = () => {
     const newTemplates = [...templates, templateData];
     setTemplates(newTemplates);
 
-    // Guardar en localStorage
     const dataToSave = { templates: newTemplates };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+      downloadTemplateJson(dataToSave);
+      return newTemplates;
+    } catch (e: any) {
+      const isQuotaError = e && (e.name === "QuotaExceededError" || e.code === 22 || e.code === 1014);
+      console.warn("localStorage setItem failed", e);
+      if (!isQuotaError) throw e;
 
-    // Descargar el JSON actualizado
-    downloadTemplateJson(dataToSave);
+      // Fallbacks escalonados: 1) sanitizar sólo el nuevo template
+      // 2) sanitizar todos los templates
+      // 3) podar plantillas antiguas. Si todo falla, ofrecer descarga y alerta.
 
-    return newTemplates;
+      const sanitizeTemplateFields = (t: Template) => {
+        const { selecBgImage, selecLogo, fondoTemplate1, ...rest } = t as any;
+        return { ...rest, selecBgImage: null, selecLogo: null, fondoTemplate1: null } as Template;
+      };
+
+      // 1) sanitizar sólo el nuevo
+      const sanitizedTemplate = sanitizeTemplateFields(templateData);
+      const sanitizedTemplates = [...templates, sanitizedTemplate];
+
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ templates: sanitizedTemplates }));
+        downloadTemplateJson({ templates: sanitizedTemplates });
+        setTemplates(sanitizedTemplates);
+        return sanitizedTemplates;
+      } catch (err) {
+        console.warn("Saving sanitized (new) template failed", err);
+      }
+
+      // 2) sanitizar todos
+      const allSanitized = newTemplates.map(sanitizeTemplateFields);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ templates: allSanitized }));
+        downloadTemplateJson({ templates: allSanitized });
+        setTemplates(allSanitized);
+        return allSanitized;
+      } catch (err) {
+        console.warn("Saving sanitized (all) templates failed", err);
+      }
+
+      // 3) podar a las últimas N plantillas
+      const MAX_KEEP = 10;
+      const pruned = allSanitized.slice(-MAX_KEEP);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ templates: pruned }));
+        downloadTemplateJson({ templates: pruned });
+        setTemplates(pruned);
+        return pruned;
+      } catch (err) {
+        console.warn("Saving pruned templates failed", err);
+      }
+
+      // Último recurso: descargar el JSON con los datos actuales y avisar al usuario
+      try {
+        downloadTemplateJson(dataToSave);
+      } catch (err) {
+        console.error("Failed to trigger download for templates", err);
+      }
+      alert(
+        "No se pudo guardar en localStorage porque el espacio está lleno. Se ha descargado 'template.json' con la configuración actual. Reemplaza 'public/template.json' manualmente o limpia el almacenamiento del navegador."
+      );
+
+      return newTemplates;
+    }
   };
 
   const updateTemplate = (
@@ -166,12 +225,68 @@ export const useTemplates = () => {
 
     // Guardar en localStorage
     const dataToSave = { templates: updatedTemplates };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+      downloadTemplateJson(dataToSave);
+      return updatedTemplates;
+    } catch (e: any) {
+      const isQuotaError = e && (e.name === "QuotaExceededError" || e.code === 22 || e.code === 1014);
+      console.warn("localStorage setItem failed", e);
+      if (!isQuotaError) throw e;
 
-    // Descargar el JSON actualizado
-    downloadTemplateJson(dataToSave);
+      const sanitizeTemplateFields = (t: Template) => {
+        const { selecBgImage, selecLogo, fondoTemplate1, ...rest } = t as any;
+        return { ...rest, selecBgImage: null, selecLogo: null, fondoTemplate1: null } as Template;
+      };
 
-    return updatedTemplates;
+      // 1) sanitizar sólo el actualizado
+      const sanitizedUpdated = updatedTemplates.map((t) =>
+        t.templateName === templateName ? sanitizeTemplateFields(t) : t
+      );
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ templates: sanitizedUpdated }));
+        downloadTemplateJson({ templates: sanitizedUpdated });
+        setTemplates(sanitizedUpdated);
+        return sanitizedUpdated;
+      } catch (err) {
+        console.warn("Saving sanitized (updated) templates failed", err);
+      }
+
+      // 2) sanitizar todos
+      const allSanitized = updatedTemplates.map(sanitizeTemplateFields);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ templates: allSanitized }));
+        downloadTemplateJson({ templates: allSanitized });
+        setTemplates(allSanitized);
+        return allSanitized;
+      } catch (err) {
+        console.warn("Saving sanitized (all) templates failed", err);
+      }
+
+      // 3) podar
+      const MAX_KEEP = 10;
+      const pruned = allSanitized.slice(-MAX_KEEP);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ templates: pruned }));
+        downloadTemplateJson({ templates: pruned });
+        setTemplates(pruned);
+        return pruned;
+      } catch (err) {
+        console.warn("Saving pruned templates failed", err);
+      }
+
+      // Descargar y avisar
+      try {
+        downloadTemplateJson(dataToSave);
+      } catch (err) {
+        console.error("Failed to trigger download for templates", err);
+      }
+      alert(
+        "No se pudo actualizar en localStorage porque el espacio está lleno. Se ha descargado 'template.json' con la configuración actual. Reemplaza 'public/template.json' manualmente o limpia el almacenamiento del navegador."
+      );
+
+      return updatedTemplates;
+    }
   };
 
   const downloadTemplateJson = (data: { templates: Template[] }) => {

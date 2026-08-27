@@ -40,7 +40,8 @@ export const Formulario: React.FC<Props> = memo(({ data, openUtp, datos }) => {
           "md:flex md:w-full md:items-center md:justify-center md:h-[125px]"
           }`}
       >
-        <div className="relative h-[130px] w-[400px] mty -mt-20 flex items-center justify-center mb-6">
+        {/*  Cambiar tamaño logo */ }
+        <div className="relative h-[180px] w-[520px] mty -mt-20 flex items-center justify-center mb-6">
           {selecLogo ? (
             <img
               className="max-w-full max-h-full w-auto h-auto object-contain"

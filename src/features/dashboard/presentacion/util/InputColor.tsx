@@ -46,7 +46,7 @@ export default function ColorInput({
           value={value}
           onChange={handleColorChange}
           disabled={isDisabled}
-          className={`rounded-lg shadow border border-gray-600 bg-gray-700/50 text-gray-300 px-3 py-1 w-[88px] outline-none focus:border-[#0065BB] ${isDisabled ? 'cursor-not-allowed bg-gray-700/30' : ''}`}
+          className={`rounded-lg shadow border border-gray-900 bg-[#AE7AA9]/40 text-gray-300 px-3 py-1 w-[88px] outline-none focus:border-[#0065BB] ${isDisabled ? 'cursor-not-allowed bg-gray-700/30' : ''}`}
         />
       </div>
     </div>

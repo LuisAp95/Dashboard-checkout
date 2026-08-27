@@ -3,7 +3,7 @@
 
 :root {
   height: 100%;
-  --main-bg: var(--theme-main-bg, #0b416e);
+  --main-bg: var(--theme-main-bg, #22192B);
   --main-bg-secundary: var(--theme-main-bg-secundary, #f5f5f5);
 
   --primary: var(--theme-primary, #0065bb);

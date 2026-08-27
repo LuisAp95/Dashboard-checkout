@@ -62,7 +62,7 @@ export default function Features({
       <div>
         <div
           onClick={handleLabelToggle}
-          className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-gray-700/50 hover:bg-gray-700 cursor-pointer transition-all duration-200"
+          className="flex w-full h-10 items-center justify-between px-4 rounded-lg bg-[#1A0F17] hover:bg-[#AE7AA9]/40 cursor-pointer transition-all duration-200"
         >
           <div className="flex items-center gap-2">
             <div
@@ -102,7 +102,7 @@ export default function Features({
               animate={{ opacity: 1, y: 0, height: "auto" }}
               exit={{ opacity: 0, y: -10, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full mt-2 overflow-hidden bg-gray-700/30 rounded-lg"
+              className="relative w-full mt-2 overflow-hidden bg-[#1A0F17] rounded-lg"
             >
               <LabelEditor />
             </motion.div>
