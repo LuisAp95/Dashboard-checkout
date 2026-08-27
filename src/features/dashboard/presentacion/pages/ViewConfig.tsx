@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ConfigPanel from "../componentes/panel-configuracion/ConfigPanel";
 import { MonitorPreview } from "../componentes/panel-monitor/MonitorPreview";
 import type { Data } from "../../dominio/interfaces/types";
@@ -10,6 +10,14 @@ type Props = {
 
 export const ViewConfig: React.FC<Props> = ({ data }) => {
   const { actions, states } = useAppContext();
+  const [checkoutData, setCheckoutData] = useState<Data>(data);
+
+  const handleDataChange = (
+    field: keyof Pick<Data, "companyName" | "companyRif" | "description" | "totalAmount">,
+    value: string
+  ) => {
+    setCheckoutData((previous) => ({ ...previous, [field]: value }));
+  };
 
   const handleLogoUpload = (imageUrl: string) => {
     actions.setSelecLogo(imageUrl);
@@ -42,8 +50,10 @@ export const ViewConfig: React.FC<Props> = ({ data }) => {
           onBackgroundUpload={handleBackgroundUpload}
           onTemplate1BackgroundUpload={handleTemplate1BackgroundUpload}
           onSave={handleSaveConfig}
+          data={checkoutData}
+          onDataChange={handleDataChange}
         />
-        <MonitorPreview data={data} />
+        <MonitorPreview data={checkoutData} />
       </main>
     </div>
   );

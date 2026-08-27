@@ -8,6 +8,7 @@ import { useTemplates } from "../../../context/useTemplates";
 import type { ConfigurationData } from "../../types/ConfigTypes";
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import CurrentTemplate from "./CurrentTemplate";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -127,6 +128,7 @@ export default function Header() {
   return (
     <header className="w-full lg:z-[21] items-center flex h-[8vh] relative justify-end pr-4 lg:pr-11">
       <div className="flex items-center gap-4">
+        <CurrentTemplate />
         {deviceType === "desktop" && (
           <button
             onClick={() => navigate("/template-view")}

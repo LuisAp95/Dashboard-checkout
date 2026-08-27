@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Styles from "./Styles";
 import Features from "./Features";
+import ConfigData from "./ConfigData";
+import type { Data } from "../../../dominio/interfaces/types";
 import sypagoLogo from "../../../../../assets/svg/Sypago.svg";
-import { Palette, Settings, Menu, X } from "lucide-react";
+import { Palette, Settings, Menu, X, SquarePen } from "lucide-react";
 
 interface ConfigProps {
+  data: Data;
+  onDataChange: (field: keyof Pick<Data, "companyName" | "companyRif" | "description" | "totalAmount">, value: string) => void;
   onLogoUpload: (imageUrl: string) => void;
   onBackgroundUpload: (imageUrl: string) => void;
   onTemplate1BackgroundUpload: (imageUrl: string) => void;
@@ -16,8 +20,10 @@ export default function ConfigPanel({
   onBackgroundUpload,
   onTemplate1BackgroundUpload,
   onSave,
+  data,
+  onDataChange,
 }: ConfigProps) {
-  const [features, setFeatures] = useState(false);
+  const [activeSection, setActiveSection] = useState<"styles" | "features" | "data">("styles");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -61,21 +67,21 @@ export default function ConfigPanel({
           
           {/* Botón Estilos */}
           <div
-            onClick={() => setFeatures(false)}
+            onClick={() => setActiveSection("styles")}
             className={`relative flex items-center w-full px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 overflow-hidden group ${
-              !features
+              activeSection === "styles"
                 ? "text-white bg-gradient-to-r from-[#AE7AA9]/30 to-transparent"
                 : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
             }`}
           >
-            {!features && (
+            {activeSection === "styles" && (
               <>
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-full bg-[#AE7AA9] opacity-60 blur-md pointer-events-none"></div>
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-[#AE7AA9] rounded-r-full z-10 pointer-events-none"></div>
               </>
             )}
             
-            <div className={`relative z-20 flex items-center gap-3 w-full ${!features ? "text-[#AE7AA9]" : "text-gray-400 group-hover:text-gray-300"} transition-colors duration-300`}>
+            <div className={`relative z-20 flex items-center gap-3 w-full ${activeSection === "styles" ? "text-[#AE7AA9]" : "text-gray-400 group-hover:text-gray-300"} transition-colors duration-300`}>
               <Palette className="w-5 h-5" />
               <span className="text-sm font-medium">Estilos</span>
             </div>
@@ -83,27 +89,50 @@ export default function ConfigPanel({
 
           {/* Botón Características */}
           <div
-            onClick={() => setFeatures(true)}
+            onClick={() => setActiveSection("features")}
             className={`relative flex items-center w-full px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 overflow-hidden group ${
-              features
+              activeSection === "features"
                 ? "text-white bg-gradient-to-r from-[#AE7AA9]/30 to-transparent"
                 : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
             }`}
           >
-            {features && (
+            {activeSection === "features" && (
               <>
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-full bg-[#AE7AA9] opacity-60 blur-md pointer-events-none"></div>
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-[#AE7AA9] rounded-r-full z-10 pointer-events-none"></div>
               </>
             )}
             
-            <div className={`relative z-20 flex items-center gap-3 w-full ${features ? "text-[#AE7AA9]" : "text-gray-400 group-hover:text-gray-300"} transition-colors duration-300`}>
-              <Settings className="w-5 h-5" />
+            <div className={`relative z-20 flex items-center gap-3 w-full ${activeSection === "features" ? "text-[#AE7AA9]" : "text-gray-400 group-hover:text-gray-300"} transition-colors duration-300`}>
+              <SquarePen className="w-5 h-5" />
               <span className="text-sm font-medium">Características</span>
             </div>
           </div>
 
+          {/* Botón de Config Data */}
+          <div
+            onClick={() => setActiveSection("data")}
+            className={`relative flex items-center w-full px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 overflow-hidden group ${
+              activeSection === "data"
+                ? "text-white bg-gradient-to-r from-[#AE7AA9]/30 to-transparent"
+                : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+            }`}
+          >
+            {activeSection === "data" && (
+              <>
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-full bg-[#AE7AA9] opacity-60 blur-md pointer-events-none"></div>
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-[#AE7AA9] rounded-r-full z-10 pointer-events-none"></div>
+              </>
+            )}
+            
+            <div className={`relative z-20 flex items-center gap-3 w-full ${activeSection === "data" ? "text-[#AE7AA9]" : "text-gray-400 group-hover:text-gray-300"} transition-colors duration-300`}>
+              <Settings className="w-5 h-5" />
+              <span className="text-sm font-medium">Configuración</span>
+            </div>
+          </div>
         </div>
+
+
 
         {/* Content Section */}
         <div
@@ -114,13 +143,15 @@ export default function ConfigPanel({
         [&::-webkit-scrollbar-thumb]:rounded-full
         [&::-webkit-scrollbar-thumb]:hover:bg-gray-500/70"
         >
-          {features ? (
+          {activeSection === "features" ? (
             <Features
               onLogoUpload={onLogoUpload}
               onBackgroundUpload={onBackgroundUpload}
               onTemplate1BackgroundUpload={onTemplate1BackgroundUpload}
               onSave={onSave}
             />
+          ) : activeSection === "data" ? (
+            <ConfigData data={data} onChange={onDataChange} />
           ) : (
             <Styles />
           )}
