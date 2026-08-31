@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const ViewConfig: React.FC<Props> = ({ data }) => {
-  const { actions, states } = useAppContext();
+  const { actions } = useAppContext();
   const [checkoutData, setCheckoutData] = useState<Data>(data);
 
   const handleDataChange = (
@@ -31,15 +31,29 @@ export const ViewConfig: React.FC<Props> = ({ data }) => {
     actions.setFondoTemplate1(imageUrl);
   };
 
-  const handleSaveConfig = () => {
-    // Aquí se enviarían los datos al backend
-    console.log(
-      "Datos a enviar al backend:",
-      states.selecBgImage,
-      states.selecLogo
-    );
-    // Implementar la lógica para enviar al backend
+  const handleSaveConfig = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/form-data", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(checkoutData),
+      });
+    
+      if (!response.ok) {
+        throw new Error("No se pudieron guardar los datos");
+      }
+    
+      alert("Datos guardados correctamente");
+    } catch (error) {
+      console.error("Error al guardar datos:", error);
+      alert("No se pudieron guardar los datos");
+    }
   };
+
+
+
   return (
     <div className="flex flex-col h-screen relative">
       {/*<BubbleBackground />*/}

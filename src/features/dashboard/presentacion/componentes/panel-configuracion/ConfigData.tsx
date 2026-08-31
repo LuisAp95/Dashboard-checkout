@@ -3,7 +3,14 @@ import type { Data } from "../../../dominio/interfaces/types";
 
 interface ConfigDataProps {
   data: Data;
-  onChange: (field: keyof Pick<Data, "companyName" | "companyRif" | "description" | "totalAmount">, value: string) => void;
+  onChange: (
+    field: keyof Pick<
+      Data,
+      "companyName" | "companyRif" | "description" | "totalAmount"
+    >,
+    value: string
+  ) => void;
+  onSave: () => void;
 }
 
 const fields: Array<{
@@ -17,7 +24,7 @@ const fields: Array<{
   { key: "totalAmount", label: "Monto total" },
 ];
 
-export default function ConfigData({ data, onChange }: ConfigDataProps) {
+export default function ConfigData({ data, onChange, onSave }: ConfigDataProps) {
   const handleChange = (field: ConfigDataProps["onChange"] extends (field: infer Key, value: string) => void ? Key : never) =>
     (event: ChangeEvent<HTMLInputElement>) => {
       onChange(field as keyof Pick<Data, "companyName" | "companyRif" | "description" | "totalAmount">, event.target.value);
@@ -42,6 +49,13 @@ export default function ConfigData({ data, onChange }: ConfigDataProps) {
             />
           </label>
         ))}
+        <button
+          type="button"
+          onClick={onSave}
+          className="w-full rounded-lg bg-[#AE7AA9] px-4 py-2 text-white transition-colors hover:bg-[#AE7AA9]/80"
+        >
+          Guardar datos
+        </button>
       </div>
     </div>
   );

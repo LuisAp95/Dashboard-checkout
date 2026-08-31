@@ -55,7 +55,7 @@ export default function Header() {
       };
 
       // Guardar el template
-      saveTemplate(templateData);
+      await saveTemplate(templateData);
       
       // Aplicar el template inmediatamente después de guardarlo
       actions.setSelectedTemplateName(templateData.templateName);
@@ -66,7 +66,7 @@ export default function Header() {
       setShowInput(false);
       setIsDropdownOpen(false);
       
-      alert("✅ Template guardado exitosamente!\n\nSe ha descargado el archivo 'template.json' actualizado.\n\nPor favor, reemplaza el archivo en:\npublic/template.json\n\ncon el archivo descargado para mantener los cambios permanentemente.");
+      alert("Template guardado exitosamente.");
     } catch (error) {
       console.error("Error al guardar template:", error);
       alert("Error al guardar el template. Por favor, inténtalo de nuevo.");
@@ -98,11 +98,11 @@ export default function Header() {
       };
 
       // Actualizar el template
-      updateTemplate(states.selectedTemplateName, configData as unknown as Partial<{ templateName: string; selecteTemplate?: string; [key: string]: string | boolean | null | undefined }>);
+      await updateTemplate(states.selectedTemplateName, configData as unknown as Partial<{ templateName: string; selecteTemplate?: string; [key: string]: string | boolean | null | undefined }>);
 
       setIsDropdownOpen(false);
       
-      alert("✅ Template actualizado exitosamente!\n\nSe ha descargado el archivo 'template.json' actualizado.\n\nPor favor, reemplaza el archivo en:\npublic/template.json\n\ncon el archivo descargado para mantener los cambios permanentemente.");
+      alert("Template actualizado exitosamente.");
     } catch (error) {
       console.error("Error al actualizar template:", error);
       alert("Error al actualizar el template. Por favor, inténtalo de nuevo.");

@@ -151,7 +151,7 @@ export default function ConfigPanel({
               onSave={onSave}
             />
           ) : activeSection === "data" ? (
-            <ConfigData data={data} onChange={onDataChange} />
+            <ConfigData data={data} onChange={onDataChange} onSave={onSave} />
           ) : (
             <Styles />
           )}

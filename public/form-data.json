@@ -1,135 +1,142 @@
 {
-  "companyName": "Timonet | Tv + Internet",
-  "companyRif": "J-408342405",
-  "description": "Pago de servicio",
-  "totalAmount": "1.000,00",
   "banks": [
     {
-      "value": "0104",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Venezolano de Crédito (VMC)",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0104"
     },
     {
-      "value": "0105",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Mercantil",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0105"
     },
     {
-      "value": "0108",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banco Provincial",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0108"
     },
     {
-      "value": "0114",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Bancaribe",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0114"
     },
     {
-      "value": "0115",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banco Exterior",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0115"
     },
     {
-      "value": "0128",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banco Caronl",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0128"
     },
     {
-      "value": "0134",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banesco",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0134"
     },
     {
-      "value": "0138",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banco Plaza",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0138"
     },
     {
-      "value": "0151",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Fondo Comun (BFC)",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0151"
     },
     {
-      "value": "0156",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "1098 Banco",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0156"
     },
     {
-      "value": "0157",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Del Sur",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0157"
     },
     {
-      "value": "0168",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Bancrecer",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0168"
     },
     {
-      "value": "0169",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "R4",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0169"
     },
     {
-      "value": "0172",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Bancamiga",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0172"
     },
     {
-      "value": "0174",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banplus",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0174"
     },
     {
-      "value": "0191",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "Banco Nacional de Crédito (BMC)",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0191"
     },
     {
-      "value": "9999",
+      "active": true,
+      "enableTransitionAccount": false,
       "label": "SyPago Banco",
-      "active": true,
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "9999"
     },
     {
-      "value": "0178",
-      "label": "N58",
       "active": true,
+      "enableTransitionAccount": false,
+      "label": "N58",
       "synagClient": true,
-      "enableTransitionAccount": false
+      "value": "0178"
     }
   ],
-  "documentTypes": ["V", "E", "P", "J", "G", "C"]
+  "companyName": "Ejemplo de cambio",
+  "companyRif": "J-408342405",
+  "description": "Pago de servicio",
+  "documentTypes": [
+    "V",
+    "E",
+    "P",
+    "J",
+    "G",
+    "C"
+  ],
+  "totalAmount": "1.000,00"
 }
