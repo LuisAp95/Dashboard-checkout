@@ -28,7 +28,6 @@ export const MonitorPreview: React.FC<Props> = ({ data }) => {
         {/* Vista de Desktop */}
         {deviceType === "desktop" ? (
           <div
-            //  style={{ width: width }}
             className=" w-full md:w-screen  device-transition origin-top scale-[0.75] shadow-2xl shadow-gray-900 --md:shadow-gray-300 absolute md:border --md:border-gray-300 md:rounded-md bg-white overflow-auto"
           >
             <div className="h-6 bg-gray-100 md:flex items-center px-2 gap-1 hidden">
@@ -45,7 +44,7 @@ export const MonitorPreview: React.FC<Props> = ({ data }) => {
           <div className="flex" style={{ height: "calc(100vh - 200px)" }}>
             <div
               style={{
-                transform: `scale(${height && height >= 773 ? 0.8 : 0.64})`,
+                transform: `scale(${height && height >= 773 ? 0.9 : 0.64})`,
                 backgroundColor:
                   deviceType === "mobile"
                     ? states.isBgFormulariocolor

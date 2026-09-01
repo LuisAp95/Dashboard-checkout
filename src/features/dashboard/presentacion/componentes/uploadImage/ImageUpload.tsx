@@ -2,6 +2,7 @@ import type React from "react";
 import { useState, useCallback } from "react";
 import { Upload, X, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import SypagoLoader from "./SypagoLoader";
 
 const API_URL = "http://localhost:8080";
 
@@ -257,7 +258,10 @@ export default function ImageUpload({
       </div>
 
       {isLoadingImages ? (
-        <p className="text-xs text-gray-400">Cargando imágenes...</p>
+        <div className="flex flex-col items-center justify-center gap-3 py-4">
+          <SypagoLoader width={52} height={52} strokeColor="#AE7AA9" />
+          <p className="text-xs text-gray-400">Cargando imágenes...</p>
+        </div>
       ) : images.length === 0 ? (
         <p className="text-xs text-gray-400">
           No hay imágenes disponibles.

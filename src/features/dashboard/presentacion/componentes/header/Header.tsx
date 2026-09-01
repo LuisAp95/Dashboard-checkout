@@ -9,6 +9,7 @@ import type { ConfigurationData } from "../../types/ConfigTypes";
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import CurrentTemplate from "./CurrentTemplate";
+import Modal from "../../../../../features/checkout/utils/modal/Modal";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ export default function Header() {
   const [showInput, setShowInput] = useState(false);
   const [templateName, setTemplateName] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const { deviceType } = useDivisePreview();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -54,22 +57,21 @@ export default function Header() {
         hasActiveTemplate: true,
       };
 
-      // Guardar el template
       await saveTemplate(templateData);
-      
-      // Aplicar el template inmediatamente después de guardarlo
+
       actions.setSelectedTemplateName(templateData.templateName);
       actions.setHasActiveTemplate(true);
+      actions.setSelecteTemplate(templateData.selecteTemplate || "1");
 
-      // Limpiar y cerrar
       setTemplateName("");
       setShowInput(false);
       setIsDropdownOpen(false);
-      
-      alert("Template guardado exitosamente.");
+      setSuccessMessage(`Template "${templateData.templateName}" guardado correctamente.`);
+      setShowSuccessModal(true);
     } catch (error) {
       console.error("Error al guardar template:", error);
-      alert("Error al guardar el template. Por favor, inténtalo de nuevo.");
+      setSuccessMessage("Error al guardar el template. Por favor, inténtalo de nuevo.");
+      setShowSuccessModal(true);
     } finally {
       setIsSaving(false);
     }
@@ -97,15 +99,15 @@ export default function Header() {
         font,
       };
 
-      // Actualizar el template
       await updateTemplate(states.selectedTemplateName, configData as unknown as Partial<{ templateName: string; selecteTemplate?: string; [key: string]: string | boolean | null | undefined }>);
 
       setIsDropdownOpen(false);
-      
-      alert("Template actualizado exitosamente.");
+      setSuccessMessage(`Template "${states.selectedTemplateName}" actualizado correctamente.`);
+      setShowSuccessModal(true);
     } catch (error) {
       console.error("Error al actualizar template:", error);
-      alert("Error al actualizar el template. Por favor, inténtalo de nuevo.");
+      setSuccessMessage("Error al actualizar el template. Por favor, inténtalo de nuevo.");
+      setShowSuccessModal(true);
     } finally {
       setIsSaving(false);
     }
@@ -126,19 +128,45 @@ export default function Header() {
   const showSaveTemplateOption = !states.hasActiveTemplate;
 
   return (
-    <header className="w-full lg:z-[21] items-center flex h-[8vh] relative justify-end pr-4 lg:pr-11">
-      <div className="flex items-center gap-4">
-        <CurrentTemplate />
-        {deviceType === "desktop" && (
-          <button
-            onClick={() => navigate("/template-view")}
-            className="p-2 cursor-pointer text-gray-600 hover:text-[#AE7AA9] hover:bg-gray-100 rounded-full transition-colors"
-            title="Vista Completa"
-          >
-            <Maximize2 className="w-6 h-6" />
-          </button>
+    <>
+      <AnimatePresence>
+        {showSuccessModal && (
+          <Modal onClose={() => setShowSuccessModal(false)} maxWidth="max-w-sm" showCloseButton>
+            <div className="flex flex-col items-center justify-center gap-4 px-2 py-2 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#AE7AA9]/20 text-2xl">
+                ✓
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-semibold text-[#0B416E]">
+                  {successMessage.includes("Error") ? "No se pudo guardar" : "Template guardado"}
+                </h3>
+                <p className="text-sm text-[#666666]">{successMessage}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full rounded-xl bg-[#AE7AA9] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#9a7297]"
+              >
+                Entendido
+              </button>
+            </div>
+          </Modal>
         )}
-        <div className="relative" ref={dropdownRef}>
+      </AnimatePresence>
+
+      <header className="w-full lg:z-[21] items-center flex h-[8vh] relative justify-end pr-4 lg:pr-11">
+        <div className="flex items-center gap-4">
+          <CurrentTemplate />
+          {deviceType === "desktop" && (
+            <button
+              onClick={() => navigate("/template-view")}
+              className="p-2 cursor-pointer text-gray-600 hover:text-[#AE7AA9] hover:bg-gray-100 rounded-full transition-colors"
+              title="Vista Completa"
+            >
+              <Maximize2 className="w-6 h-6" />
+            </button>
+          )}
+          <div className="relative" ref={dropdownRef}>
           <button
             onClick={handleSaveButtonClick}
             className="p-2 cursor-pointer text-[#AE7AA9] hover:text-[#AE7AA9] hover:bg-[#AE7AA9]/20 rounded-full transition-colors flex items-center gap-1 "
@@ -276,10 +304,11 @@ export default function Header() {
                 )}
               </motion.div>
             )}
-          </AnimatePresence>
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
 

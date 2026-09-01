@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Info } from "lucide-react";
+import SypagoLoader from "../componentes/uploadImage/SypagoLoader";
 import { useTemplates } from "../../context/useTemplates";
 
 export const TemplateSelector = () => {
@@ -9,7 +10,12 @@ export const TemplateSelector = () => {
   const { templates, isLoading, applyTemplate } = useTemplates();
 
   if (isLoading) {
-    return <div className="w-full text-center py-2">Cargando templates...</div>;
+    return (
+      <div className="flex w-full flex-col items-center justify-center gap-3 py-4 text-center">
+        <SypagoLoader width={52} height={52} strokeColor="#AE7AA9" />
+        <span className="text-xs text-gray-400">Cargando templates...</span>
+      </div>
+    );
   }
 
   // Agregar la opción de crear nuevo template al inicio del array
