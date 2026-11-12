@@ -3,7 +3,7 @@ import type { Data } from "../../../../../dashboard/dominio/interfaces/types";
 import { useDivisePreview } from "../../../../../../context/device-preview-context";
 import { useAppContext } from "../../../../../../context/AppContext";
 import syPagoLogo from "../../../../../../assets/svg/Sypago.svg";
-import segHoSypago from "/images/segHoSypago.png";
+import syPagoBancaribeLogo from "../../../../../../assets/svg/sypago-bancaribe-turquesa.svg";
 import conatelLogo from "../../../../../../assets/svg/0168_W.svg";
 
 interface InfoCobroProps extends Data {
@@ -12,7 +12,13 @@ interface InfoCobroProps extends Data {
 
 export const InfoCobro: React.FC<InfoCobroProps> = memo((props) => {
   const { deviceType } = useDivisePreview();
-  const { textColorInfo, bgColorPago, textColorPago, selectedTemplateName } =
+  const {
+    textColorInfo,
+    bgColorPago,
+    textColorPago,
+    selectedTemplateName,
+    useBancaribeLogo,
+  } =
     useAppContext().states;
   const { onOpenTermsModal } = props;
 
@@ -30,8 +36,8 @@ export const InfoCobro: React.FC<InfoCobroProps> = memo((props) => {
               <div className="md:flex hidden relative md:h-[180px] md:w-[400px] logo items-center justify-center ">
                 <div className="w-full h-full flex items-center justify-center">
                   <img
-                    src={syPagoLogo}
-                    alt="Sycom"
+                    src={useBancaribeLogo ? syPagoBancaribeLogo : syPagoLogo}
+                    alt={useBancaribeLogo ? "Logo Sypago Bancaribe" : "Logo Sypago"}
                     className="w-full h-full object-contain"
                   />
                 </div>

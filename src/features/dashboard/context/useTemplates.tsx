@@ -91,6 +91,7 @@ export const useTemplates = () => {
       actions.setTextModalColorInfo("#666666");
       actions.setSelecBgImage(null);
       actions.setSelecLogo(null);
+      actions.setUseBancaribeLogo(false);
       actions.setLabelBanco("Banco");
       actions.setLabelPhone("Teléfono");
       actions.setLabelCuenta("Número de Cuenta");
@@ -106,6 +107,7 @@ export const useTemplates = () => {
     actions.setSelectedTemplateName(template.templateName);
     actions.setSelecteTemplate(template.selecteTemplate || "1");
     actions.setHasActiveTemplate(true);
+    actions.setUseBancaribeLogo(template.useBancaribeLogo === true);
 
     // Aplicar cada propiedad del template a los estados correspondientes
     Object.entries(template).forEach(([key, value]) => {

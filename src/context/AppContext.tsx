@@ -20,6 +20,7 @@ type AppContextType = {
     textColorConInfo: string;
     selecBgImage: string | null;
     selecLogo: string | null;
+    useBancaribeLogo: boolean;
     labelBanco: string;
     labelPhone: string;
     labelCuenta: string;
@@ -49,6 +50,7 @@ type AppContextType = {
     setTextColorConInfo: React.Dispatch<React.SetStateAction<string>>;
     setSelecBgImage: React.Dispatch<React.SetStateAction<string | null>>;
     setSelecLogo: React.Dispatch<React.SetStateAction<string | null>>;
+    setUseBancaribeLogo: React.Dispatch<React.SetStateAction<boolean>>;
     setLabelBanco: React.Dispatch<React.SetStateAction<string>>;
     setLabelPhone: React.Dispatch<React.SetStateAction<string>>;
     setLabelCuenta: React.Dispatch<React.SetStateAction<string>>;
@@ -85,6 +87,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [textColorConInfo, setTextColorConInfo] = useState<string>("#666666");
   const [selecBgImage, setSelecBgImage] = useState<string | null>(null); ////Valida si hay una imagen de fondo
   const [selecLogo, setSelecLogo] = useState<string | null>(null); ////Valida si hay una imagen de fondo
+  const [useBancaribeLogo, setUseBancaribeLogo] = useState<boolean>(false);
   const [labelBanco, setLabelBanco] = useState<string>("Banco");
   const [labelPhone, setLabelPhone] = useState<string>("Teléfono");
   const [labelCuenta, setLabelCuenta] = useState<string>("Número de Cuenta");
@@ -116,6 +119,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         textModalColorInfo,
         textColorConInfo,
         selecLogo,
+        useBancaribeLogo,
         labelBanco,
         labelPhone,
         labelCuenta,
@@ -145,6 +149,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setTextColorConInfo,
         setSelecBgImage,
         setSelecLogo,
+        setUseBancaribeLogo,
         setLabelBanco,
         setLabelPhone,
         setLabelCuenta,
@@ -175,6 +180,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       textColorConInfo,
       selecBgImage,
       selecLogo,
+      useBancaribeLogo,
       labelBanco,
       labelPhone,
       labelCuenta,

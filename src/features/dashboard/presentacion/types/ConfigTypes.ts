@@ -19,6 +19,7 @@ export interface ConfigurationData {
   textColorConInfo: string;
   selecBgImage: string | null;
   selecLogo: string | null;
+  useBancaribeLogo: boolean;
   labelBanco: string;
   labelPhone: string;
   labelCuenta: string;

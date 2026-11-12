@@ -5,6 +5,7 @@ import ConfigData from "./ConfigData";
 import type { Data } from "../../../dominio/interfaces/types";
 import sypagoLogo from "../../../../../assets/svg/Sypago.svg";
 import { Palette, Settings, Menu, X, SquarePen } from "lucide-react";
+import { useAppContext } from "../../../../../context/AppContext";
 
 interface ConfigProps {
   data: Data;
@@ -25,6 +26,7 @@ export default function ConfigPanel({
 }: ConfigProps) {
   const [activeSection, setActiveSection] = useState<"styles" | "features" | "data">("styles");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { states, actions } = useAppContext();
 
   return (
     <>
@@ -60,6 +62,28 @@ export default function ConfigPanel({
                 <img src={sypagoLogo} alt="SyPago" className="w-full h-auto" />
             </div>
           </div>
+          <div className="mt-5 flex items-center justify-between gap-3 text-sm text-gray-200">
+            <span id="bancaribe-logo-label">Logo Sypago / Bancaribe</span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={states.useBancaribeLogo}
+              aria-labelledby="bancaribe-logo-label"
+              onClick={() => actions.setUseBancaribeLogo((enabled) => !enabled)}
+              className={`relative h-6 w-11 rounded-full transition-colors ${
+                states.useBancaribeLogo ? "bg-[#AE7AA9]" : "bg-gray-600"
+              }`}
+            >
+              <span
+                className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform ${
+                  states.useBancaribeLogo ? "translate-x-5" : "translate-x-0"
+                }`}
+              />
+            </button>
+          </div>
+          <p className="mt-1 text-xs text-gray-400">
+            {states.useBancaribeLogo ? "Sypago Bancaribe" : "Sypago normal"}
+          </p>
         </div>
 
         {/* Navigation Menu */}

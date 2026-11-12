@@ -3,6 +3,7 @@ import { useDivisePreview } from "../../../../../../context/device-preview-conte
 import { useAppContext } from "../../../../../../context/AppContext";
 import type { OnePasosProps } from "../../../../dominio/interfaces/types";
 import { SyPagoLogoRegular } from "../../../../../../assets/svg/Svg";
+import SyPagoBancaribe from "../../../../../../assets/svg/sypago-bancaribe-turquesa.svg";
 
 export const DatosCobrador: React.FC<OnePasosProps> = (props) => {
   const { name, rif, concept, total, onNext } = props;
@@ -17,12 +18,12 @@ export const DatosCobrador: React.FC<OnePasosProps> = (props) => {
         Datos del Cobrador
       </h1>
       <div className="relative w-full flex justify-center items-center h-[100px] -mt-8">
-        {states.selecLogo ? (
+        {states.useBancaribeLogo ? (
           <div className="relative h-[100px] w-[350px] flex items-center justify-center">
             <img
               className="max-w-full max-h-full w-auto h-auto object-contain"
-              src={states.selecLogo}
-              alt="Sycom"
+              src={SyPagoBancaribe}
+              alt="Logo Sypago Bancaribe"
               style={{ aspectRatio: 'auto' }}
             />
           </div>
