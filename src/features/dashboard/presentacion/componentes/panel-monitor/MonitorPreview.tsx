@@ -18,42 +18,47 @@ export const MonitorPreview: React.FC<Props> = ({ data }) => {
   const { font } = useTypography();
   const { states } = useAppContext();
 
-  const containerBaseStyle = "justify-center flex-1 flex relative z-10";
+  const containerBaseStyle = "flex min-h-0 flex-1 justify-center relative z-10";
 
   return (
-    <div className="flex flex-col  h-screen justify-center flex-1 relative">
+    <div className="relative flex h-full min-h-0 flex-1 flex-col">
       <Header />
 
-      <div style={{ fontFamily: font }} className={containerBaseStyle}>
+      <div
+        style={{ fontFamily: font }}
+        className={`${containerBaseStyle} ${
+          deviceType === "mobile"
+            ? "flex-col items-center overflow-auto py-6"
+            : "items-center"
+        }`}
+      >
         {/* Vista de Desktop */}
         {deviceType === "desktop" ? (
-          <div
-            className=" w-full md:w-screen  device-transition origin-top scale-[0.75] shadow-2xl shadow-gray-900 --md:shadow-gray-300 absolute md:border --md:border-gray-300 md:rounded-md bg-white overflow-auto"
-          >
-            <div className="h-6 bg-gray-100 md:flex items-center px-2 gap-1 hidden">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            </div>
-            <div style={{ height: height }} className="overflow-auto">
-              <ViewCheckout {...data} />
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div className="w-full origin-center device-transition scale-[0.85] shadow-2xl shadow-gray-900 --md:shadow-gray-300 md:w-screen md:border --md:border-gray-300 md:rounded-md bg-white overflow-auto">
+              <div className="h-6 bg-gray-100 md:flex items-center px-2 gap-1 hidden">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div style={{ height: height }} className="overflow-auto">
+                <ViewCheckout {...data} />
+              </div>
             </div>
           </div>
         ) : (
           /* Vista de Mobile */
-          <div className="flex" style={{ height: "calc(100vh - 200px)" }}>
+          <div className="flex w-full min-w-[406px] flex-1 justify-center">
             <div
               style={{
-                transform: `scale(${height && height >= 773 ? 0.9 : 0.64})`,
                 backgroundColor:
                   deviceType === "mobile"
                     ? states.isBgFormulariocolor
                     : "white",
-                transition: "all 0.9s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
-              className=" w-[375px] h-[730px] top-3  origin-top m-auto border-8 border-gray-800 rounded-[1.75rem] overflow-auto custon-scrollbar"
+              className="box-content h-[844px] w-[390px] shrink-0 self-start border-[8px] border-gray-800 rounded-[2.5rem] shadow-2xl overflow-auto custon-scrollbar"
             >
-              <div className="sticky top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-lg z-3"></div>
+              <div className="sticky top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-lg z-30"></div>
               <div className="mt-[-24px]">
                 <ViewCheckout {...data} />
               </div>
@@ -62,7 +67,7 @@ export const MonitorPreview: React.FC<Props> = ({ data }) => {
         )}
 
         {/* Controles de cambio de dispositivo */}
-        <div className="hidden md:flex absolute origin-bottom bottom-8 justify-center items-center gap-2">
+        <div className="absolute bottom-4 right-4 z-50 hidden items-center gap-2 rounded-full border border-gray-200 bg-white/95 p-1 shadow-lg backdrop-blur md:flex">
           <button
             className={`w-10 h-10 p-1.5 rounded-full transition-colors cursor-pointer ${
               deviceType === "desktop" ? "bg-blue-100" : "hover:bg-gray-100"
